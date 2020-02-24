@@ -30,14 +30,18 @@ public class Enemy : MonoBehaviour
     {
         if (!isMoving)
         {
-            HealthSystem.playerHealth -= 1;
-            if (HealthSystem.playerHealth >= 1)
-                Player.transform.position = RespawnPos.position;
+            if (col.gameObject.name.Equals("Player"))
+            {
+                HealthSystem.playerHealth -= 1;
+                if (HealthSystem.playerHealth >= 1)
+                    Player.transform.position = RespawnPos.position;
+            }
         }
     }
     private void Update()
     {
-        isMoving = Mathf.Abs(lastPosition.x - t.position.x) > 0.01;
+       //Debug.Log(Mathf.Abs(lastPosition.x - t.position.x));
+       isMoving = Mathf.Abs(lastPosition.x - t.position.x) > 0.1;
     }
 
 }
