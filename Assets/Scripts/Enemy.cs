@@ -26,16 +26,13 @@ public class Enemy : MonoBehaviour
                 Player.transform.position = RespawnPos.position;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
         if (!isMoving)
         {
-            if (collision.gameObject.name.Equals("Player"))
-            {
-                HealthSystem.playerHealth -= 1;
-                if (HealthSystem.playerHealth >= 1)
-                    Player.transform.position = RespawnPos.position;
-            }
+            HealthSystem.playerHealth -= 1;
+            if (HealthSystem.playerHealth >= 1)
+                Player.transform.position = RespawnPos.position;
         }
     }
     private void Update()
