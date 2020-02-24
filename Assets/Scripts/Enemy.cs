@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject Player;
-    public Transform TeleportPos;
+    public Transform RespawnPos;
     
     private bool isMoving;
     private Transform t;
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         {
             HealthSystem.playerHealth -= 1;
             if (HealthSystem.playerHealth >= 1)
-                Player.transform.position = TeleportPos.position;
+                Player.transform.position = RespawnPos.position;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
             {
                 HealthSystem.playerHealth -= 1;
                 if (HealthSystem.playerHealth >= 1)
-                    Player.transform.position = TeleportPos.position;
+                    Player.transform.position = RespawnPos.position;
             }
         }
     }
