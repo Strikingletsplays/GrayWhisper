@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public static int playerHealth;
+    public int playerHealth;
     public Image[] hearts;
     public Sprite fullHealth, emptyHealth;
 

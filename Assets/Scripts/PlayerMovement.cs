@@ -29,16 +29,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Set walking speed
-        horizontalMove = CrossPlatformInputManager.GetAxis("Horizontal") * walkSpeed;
+                //  Change to --> CrossPlatformInputManager.GetAxis("Horizontal")
+        horizontalMove = Input.GetAxisRaw("Horizontal") * walkSpeed;
+
         //Detecting double taps on Movement buttons
-        if (CrossPlatformInputManager.GetButtonDown("Horizontal"))
+        if (Input.GetButtonDown("Horizontal") || CrossPlatformInputManager.GetButtonDown("Horizontal"))
         {
             movePressed += 1;
             Invoke("SetMovePressedToZero", tapDelay);
             player.sharedMaterial = noFriction;
         }
 
-        if (CrossPlatformInputManager.GetButtonUp("Horizontal"))
+        if (Input.GetButtonUp("Horizontal") || CrossPlatformInputManager.GetButtonUp("Horizontal"))
         {
             player.sharedMaterial = withFricton;
         }
@@ -47,28 +49,29 @@ public class PlayerMovement : MonoBehaviour
         {
             runNow = true;   
         }
-        if (CrossPlatformInputManager.GetButtonUp("Horizontal") && runNow)
+        if ((Input.GetButtonUp("Horizontal") || CrossPlatformInputManager.GetButtonUp("Horizontal")) && runNow)
         {
             SetMovePressedToZero();
             SetRunNowFalse();
         }
         //Running
+                //Change to --> CrossPlatformInputManager.GetAxis("Horizontal")
         if (runNow)
         {
-            horizontalMove = CrossPlatformInputManager.GetAxis("Horizontal") * runSpeed;
+            horizontalMove = Input.GetAxis("Horizontal") * runSpeed;
         }
         //Jumping
-        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetButtonDown("Jump"))
             {
                 Animator.SetBool("Isjumping", true);
                 jump = true;
             }
         //Crouching
-        if (CrossPlatformInputManager.GetButtonDown("Crouch"))
+        if (CrossPlatformInputManager.GetButtonDown("Crouch") || Input.GetButtonDown("Crouch"))
             {
                 crouch = true;
             }
-         else if (CrossPlatformInputManager.GetButtonUp("Crouch"))
+         else if (CrossPlatformInputManager.GetButtonUp("Crouch") || Input.GetButtonUp("Crouch"))
             {
                 crouch = false;
             }
