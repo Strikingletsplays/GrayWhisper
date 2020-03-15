@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Set walking speed
                 //  Change to --> CrossPlatformInputManager.GetAxis("Horizontal")
-        horizontalMove = Input.GetAxisRaw("Horizontal") * walkSpeed;
+        horizontalMove = CrossPlatformInputManager.GetAxisRaw("Horizontal") * walkSpeed;
 
         //Detecting double taps on Movement buttons
         if (Input.GetButtonDown("Horizontal") || CrossPlatformInputManager.GetButtonDown("Horizontal"))
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
                 //Change to --> CrossPlatformInputManager.GetAxis("Horizontal")
         if (runNow)
         {
-            horizontalMove = Input.GetAxis("Horizontal") * runSpeed;
+            horizontalMove = CrossPlatformInputManager.GetAxis("Horizontal") * runSpeed;
         }
         //Jumping
         if (CrossPlatformInputManager.GetButtonDown("Jump") || Input.GetButtonDown("Jump"))
