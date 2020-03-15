@@ -69,10 +69,12 @@ public class PlayerMovement : MonoBehaviour
         //Crouching
         if (CrossPlatformInputManager.GetButtonDown("Crouch") || Input.GetButtonDown("Crouch"))
             {
+                Animator.SetBool("IsCrouching", true);
                 crouch = true;
             }
          else if (CrossPlatformInputManager.GetButtonUp("Crouch") || Input.GetButtonUp("Crouch"))
             {
+                Animator.SetBool("IsCrouching", false);
                 crouch = false;
             }
          Animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
